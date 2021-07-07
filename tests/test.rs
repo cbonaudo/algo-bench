@@ -1,20 +1,20 @@
-use test_project::{get_common_prefix_if, get_common_prefix_myo, get_common_prefix_igni};
+use test_project::{get_common_prefix_igni, get_common_prefix_myo, get_common_prefix_sha};
 
 
 #[test]
 fn test_one() {
-    assert_eq!(get_common_prefix_if(["food"].to_vec()), "food");
+    assert_eq!(get_common_prefix_sha(["food"].to_vec()), "food");
 }
 
 #[test]
 fn test_two() {
-    assert_eq!(get_common_prefix_if(["food", "fool"].to_vec()), "foo");
+    assert_eq!(get_common_prefix_sha(["food", "fool"].to_vec()), "foo");
 }
 
 #[test]
 fn test_no_match() {
     assert_eq!(
-        get_common_prefix_if(["food", "foal", "fool", "goal"].to_vec()),
+        get_common_prefix_sha(["food", "foal", "fool", "goal"].to_vec()),
         ""
     );
 }
@@ -22,7 +22,7 @@ fn test_no_match() {
 #[test]
 fn test_match() {
     assert_eq!(
-        get_common_prefix_if(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()),
+        get_common_prefix_sha(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()),
         "fo"
     );
 }
