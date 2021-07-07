@@ -31,14 +31,14 @@ pub fn get_common_prefix_igni_ugly(words: Vec<&str>) -> String {
     }
 
     advance_prefix(
-        String::with_capacity(256),
+        String::with_capacity(32),
         words.iter().map(|word| word.chars()).collect(),
     )
 }
 
 pub fn get_common_prefix_myo(words: Vec<&str>) -> String {
     let base_len = words[0].len();
-    
+
     for i in (0..=base_len).rev() {
         if words
             .iter()
