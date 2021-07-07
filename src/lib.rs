@@ -17,6 +17,25 @@ pub fn get_common_prefix_igni(words: Vec<&str>) -> String {
     words[0].chars().take(common_prefix_index).collect()
 }
 
+pub fn get_common_prefix_igni_ugly(words: Vec<&str>) -> String {
+    fn advance_prefix<'a>(mut common_prefix: String, mut all_chars: Vec<Chars<'a>>) -> String {
+        let mut next_letters = all_chars.iter_mut().map(|cs| cs.next());
+
+        if let Some(Some(l)) = next_letters.next() {
+            if next_letters.all(|maybe_l| maybe_l == Some(l)) {
+                common_prefix.push(l);
+                return advance_prefix(common_prefix, all_chars);
+            }
+        }
+        common_prefix
+    }
+
+    advance_prefix(
+        "".to_string(),
+        words.iter().map(|word| word.chars()).collect(),
+    )
+}
+
 pub fn get_common_prefix_myo(words: Vec<&str>) -> String {
     let base_len = words[0].len();
     

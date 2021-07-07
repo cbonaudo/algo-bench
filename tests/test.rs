@@ -1,16 +1,14 @@
-use test_project::{get_common_prefix_igni, get_common_prefix_myo, get_common_prefix_sha};
+use test_project::{get_common_prefix_igni, get_common_prefix_igni_ugly, get_common_prefix_myo, get_common_prefix_sha};
 
 
 #[test]
 fn test_one() {
     assert_eq!(get_common_prefix_sha(["food"].to_vec()), "food");
 }
-
 #[test]
 fn test_two() {
     assert_eq!(get_common_prefix_sha(["food", "fool"].to_vec()), "foo");
 }
-
 #[test]
 fn test_no_match() {
     assert_eq!(
@@ -18,7 +16,6 @@ fn test_no_match() {
         ""
     );
 }
-
 #[test]
 fn test_match() {
     assert_eq!(
@@ -31,12 +28,10 @@ fn test_match() {
 fn test_2_one() {
     assert_eq!(get_common_prefix_igni(["food"].to_vec()), "food");
 }
-
 #[test]
 fn test_2_two() {
     assert_eq!(get_common_prefix_igni(["food", "fool"].to_vec()), "foo");
 }
-
 #[test]
 fn test_2_no_match() {
     assert_eq!(
@@ -44,11 +39,33 @@ fn test_2_no_match() {
         ""
     );
 }
-
 #[test]
 fn test_2_match() {
     assert_eq!(
-        get_common_prefix_myo(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()),
+        get_common_prefix_igni(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()),
+        "fo"
+    );
+}
+
+#[test]
+fn test_igni_ugly_one() {
+    assert_eq!(get_common_prefix_igni_ugly(["food"].to_vec()), "food");
+}
+#[test]
+fn test_igni_ugly_two() {
+    assert_eq!(get_common_prefix_igni_ugly(["food", "fool"].to_vec()), "foo");
+}
+#[test]
+fn test_igni_ugly_no_match() {
+    assert_eq!(
+        get_common_prefix_igni_ugly(["food", "foal", "fool", "goal"].to_vec()),
+        ""
+    );
+}
+#[test]
+fn test_igni_ugly_match() {
+    assert_eq!(
+        get_common_prefix_igni_ugly(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()),
         "fo"
     );
 }
@@ -57,12 +74,10 @@ fn test_2_match() {
 fn test_3_one() {
     assert_eq!(get_common_prefix_myo(["food"].to_vec()), "food");
 }
-
 #[test]
 fn test_3_two() {
     assert_eq!(get_common_prefix_myo(["food", "fool"].to_vec()), "foo");
 }
-
 #[test]
 fn test_3_no_match() {
     assert_eq!(
@@ -70,7 +85,6 @@ fn test_3_no_match() {
         ""
     );
 }
-
 #[test]
 fn test_3_match() {
     assert_eq!(
