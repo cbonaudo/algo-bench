@@ -7,7 +7,7 @@ fn criterion_benchmark_sha(c: &mut Criterion) {
 }
 
 fn criterion_benchmark_igni(c: &mut Criterion) {
-    c.bench_function("igni: myo style", |b| b.iter(|| get_common_prefix_igni(black_box(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()))));
+    c.bench_function("igni", |b| b.iter(|| get_common_prefix_igni(black_box(["food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong", "food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong","food", "fool", "foal", "foals", "fonnder","follythatthiswordistoolong"].to_vec()))));
 }
 
 fn criterion_benchmark_myo(c: &mut Criterion) {

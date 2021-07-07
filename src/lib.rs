@@ -1,29 +1,20 @@
 use std::str::Chars;
 
 pub fn get_common_prefix_igni(words: Vec<&str>) -> String {
-    let mut result = "".to_string();
+    fn advance_prefix<'a>(common_index: usize, mut all_chars: Vec<Chars<'a>>) -> usize {
+        let mut next_letters = all_chars.iter_mut().map(|cs| cs.next());
 
-    let mut allchars: Vec<Chars> = words.iter().map(|word| word.chars()).collect();
-
-    while let Some(next_char) = allchars
-        .iter_mut()
-        .map(|chars| chars.next())
-        .reduce(|prev, curr| {
-            if prev == curr {
-                prev
-            } else {
-                None
+        if let Some(Some(l)) = next_letters.next() {
+            if next_letters.all(|maybe_l| maybe_l == Some(l)) {
+                return advance_prefix(common_index + 1, all_chars);
             }
-        })
-    {
-        if next_char.is_some() {
-            result.push(next_char.unwrap());
-        } else {
-            break;
         }
+        common_index
     }
-    
-    result
+
+    let common_prefix_index = advance_prefix(0, words.iter().map(|word| word.chars()).collect());
+
+    words[0].chars().take(common_prefix_index).collect()
 }
 
 pub fn get_common_prefix_myo(words: Vec<&str>) -> String {
