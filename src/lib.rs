@@ -40,20 +40,16 @@ pub fn get_common_prefix_myo(words: Vec<&str>) -> String {
     let base_len = words[0].len();
 
     for i in (0..=base_len).rev() {
-        if words
-            .iter()
-            .all(|word|
-                { 
-                    let word_leng = {
-                        if i <= word.len() {
-                            i
-                        } else {
-                            word.len()
-                        }
-                    };
-                    word[0..word_leng] == words[0][0..i]
-                })
-            == true
+        if words.iter().all(|word| {
+            let word_leng = {
+                if i <= word.len() {
+                    i
+                } else {
+                    word.len()
+                }
+            };
+            word[0..word_leng] == words[0][0..i]
+        }) == true
         {
             return words[0][0..i].to_string();
         }
