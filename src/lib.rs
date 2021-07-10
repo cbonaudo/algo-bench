@@ -83,3 +83,19 @@ pub fn get_common_prefix_sha(words: Vec<&str>) -> String {
 
     longest_prefix.to_string()
 }
+
+#[macro_export]
+macro_rules! bench_these {
+    ( $group_name:ident, [ $( ($name:expr, $fn_name:ident)  ),* ], $parameters:expr ) => {
+
+        paste! {
+            fn [<bench_ $group_name>](c: &mut Criterion) {
+                $(
+                    c.bench_function($name, |b| b.iter(|| $fn_name (black_box($parameters.clone()))));
+                )*
+            }   
+
+            criterion_group!($group_name, [<bench_ $group_name>]);
+        }
+    }
+}
