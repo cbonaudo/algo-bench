@@ -1,4 +1,4 @@
-use test_project::{
+use algo_bench::{
     get_common_prefix_igni, get_common_prefix_igni_ugly, get_common_prefix_myo,
     get_common_prefix_sha,
 };
